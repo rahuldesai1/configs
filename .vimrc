@@ -16,6 +16,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'itchyny/lightline.vim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'universal-ctags/ctags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,6 +42,8 @@ set laststatus=2
 
 set updatetime=200
 
+" OTHER CONFIG
+
 syntax on
 
 colorscheme molokai
@@ -49,9 +52,26 @@ set shiftwidth=2
 set expandtab
 set tabstop=2
 set number
+set tags=tags
 
 set autoindent
 set smartindent
 
 imap jj <ESC>
 
+nmap <Left> <<
+nmap <Right> >>
+vmap <Left> <gv
+vmap <Right> >gv
+
+" Remap commonly used keys
+nnoremap <Down> :m .+1<CR>
+nnoremap <Up> :m .-2<CR>
+inoremap <Down> <Esc>:m .+1<CR>
+inoremap <Up> <Esc>:m .-2<CR>
+vnoremap <Down> :m '>+1<CR>gv=gv
+vnoremap <Up> :m '<-2<CR>gv=gv
+
+nnoremap ;w :w<CR>
+nnoremap ;wq :wq<CR>
+nnoremap ;q :q<CR>

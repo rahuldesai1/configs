@@ -1,6 +1,7 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagaced
 export TERM=xterm-256color
+export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -44,8 +45,8 @@ function zsh_prompt() {
     username="%n"
     hostname="%{$fg[green]%}%2d%{$reset_color%}"
     backgrounded="%(1j.[%j].)"
-    nextrow="\n╰─▶ "
-    echo "╭─[$username in $hostname] $(ranger_prompt) $backgrounded $nextrow"
+    nextrow="\n%{$fg[cyan]%}♕%{$reset_color%}  "
+    echo "[$username in $hostname] $(ranger_prompt) $backgrounded $nextrow"
 }
 
 PS1="$(zsh_prompt)"
@@ -144,7 +145,6 @@ gc() {
 }
 
 # ls rebinds
-alias ls='ls -G'
 la() {
     ls -Ga
 }
@@ -156,3 +156,7 @@ ll() {
 l() {
     ls -G
 }
+
+# other
+
+alias b='cd ..'
