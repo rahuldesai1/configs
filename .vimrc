@@ -1,37 +1,53 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+if has('python3')
+endif
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ycm-core/YouCompleteMe'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'preservim/nerdtree'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'itchyny/lightline.vim'
-Plugin 'preservim/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'universal-ctags/ctags'
+call plug#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gr :LspReferences<CR>
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': 'H'}
+
+" go-pls
+autocmd FileType go nmap gb  <Plug>(go-build)
+autocmd FileType go nmap gr  <Plug>(go-run)
+let g:go_version_warning = 0
+let g:go_fmt_command = "goimports"
+
+"Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Nerd Tree config
 let NERDTreeQuitOnOpen = 1
@@ -39,8 +55,6 @@ nmap <silent> <C-f> :NERDTreeToggle<CR>
 
 let g:rainbow_active = 1
 set laststatus=2
-
-set updatetime=200
 
 " OTHER CONFIG
 
@@ -75,3 +89,6 @@ vnoremap <Up> :m '<-2<CR>gv=gv
 nnoremap ;w :w<CR>
 nnoremap ;wq :wq<CR>
 nnoremap ;q :q<CR>
+nnoremap :Q :q<CR>
+
+nnoremap bb <C-O>

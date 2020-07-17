@@ -42,11 +42,11 @@ function ranger_prompt() {
 }
 
 function zsh_prompt() {
-    username="%n"
-    hostname="%{$fg[green]%}%2d%{$reset_color%}"
+    username="%m"
+    hostname="%n"
     backgrounded="%(1j.[%j].)"
-    nextrow="\n%{$fg[cyan]%}♕%{$reset_color%}  "
-    echo "[$username in $hostname] $(ranger_prompt) $backgrounded $nextrow"
+    nextrow="\n%{$fg[magenta]%}%~ $ %{$reset_color%}"
+    echo "[%{$fg[green]%}$username%{$reset_color%} in %{$fg[green]%}$hostname%{$reset_color%}] $(ranger_prompt) $backgrounded $nextrow"
 }
 
 PS1="$(zsh_prompt)"
@@ -158,5 +158,8 @@ l() {
 }
 
 # other
-
 alias b='cd ..'
+alias env="echo $VIRTUAL_ENV"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+alias vim='mvim -v'
