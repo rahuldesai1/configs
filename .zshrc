@@ -119,21 +119,13 @@ git_prompt_string() {
     [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$(parse_git_state)$(parse_git_remote_state)$GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
 }
 
-school() {
-  cd ~/LocalDocs/School/sp2020/cs"$1"
-}
 
-res() {
-  cd ~/Localdocs/School/sp2020/research
-}
-
-mlab() {
-  cd ~/LocalDocs/MLAB
+neuro() {
+  cd ~/LocalDocs/NeuroClarity
 }
 
 # git alias
 alias gl='git log'
-alias gd='git diff'
 alias gs='git status'
 
 ga() {
@@ -163,3 +155,12 @@ alias env="echo $VIRTUAL_ENV"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 alias vim='mvim -v'
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# fzf configuration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended" # use extended regex
+export FZF_DEFAULT_COMMAND="fd --type f"  # ignore any files in .gitignore
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
