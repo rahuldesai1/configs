@@ -1,7 +1,6 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagaced
 export TERM=xterm-256color
-export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -124,6 +123,10 @@ neuro() {
   cd ~/LocalDocs/NeuroClarity
 }
 
+school() {
+  cd ~/LocalDocs/School/fa20
+}
+
 # git alias
 alias gl='git log'
 alias gs='git status'
@@ -164,3 +167,12 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export FZF_DEFAULT_OPS="--extended" # use extended regex
 export FZF_DEFAULT_COMMAND="fd --type f"  # ignore any files in .gitignore
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# mkvirtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_VIRTUALENV=/Library/Frameworks/Python.framework/Versions/3.8/bin/virtualenv
+export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
+source /Library/Frameworks/Python.framework/Versions/3.8/bin/virtualenvwrapper.sh
+
+alias python=python3

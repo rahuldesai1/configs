@@ -6,9 +6,7 @@ endif
 
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
-
 Plug 'preservim/nerdtree'
-Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'hashivim/vim-terraform'
@@ -18,13 +16,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
-" nnoremap <silent> gd :LspDefinition<CR>
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
@@ -38,10 +35,12 @@ autocmd FileType go nmap gb  <Plug>(go-build)
 let g:go_version_warning = 0
 let g:go_fmt_command = "goimports"
 
-"Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" Fugitive remaps
+nmap gs :G<CR>
+nmap gc :Gcommit<CR>
+nmap gl :Glog<CR>
+
+nnoremap <C-g> :Rg!
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -54,6 +53,9 @@ nmap <silent> <C-f> :NERDTreeToggle<CR>
 
 let g:rainbow_active = 1
 set laststatus=2
+
+" FZF
+nmap <silent> <C-p> :FZF<CR>
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
@@ -159,9 +161,6 @@ nnoremap ;q :q<CR>
 nnoremap :Q :q<CR>
 
 noremap <C-C>y "*y
-
-" Fugitive remaps
-nmap gs :G<CR>
 
 
 " Buffer shortcuts
