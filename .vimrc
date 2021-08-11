@@ -36,6 +36,9 @@ Plug 'dense-analysis/ale'
 " Completion
 Plug 'neoclide/coc.nvim', {'for': ['javascript', 'go', 'json',  'yaml', 'python', 'vim', 'java'], 'branch': 'release'}
 
+" Python
+Plug 'sillybun/vim-repl'
+
 call plug#end()
 
 let g:ale_sign_error = '❌'
@@ -152,6 +155,9 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" REPL
+nnoremap <C-C>r :REPLToggle<CR>
+
 " OTHER CONFIG
 
 syntax on
@@ -203,4 +209,3 @@ augroup END
 au Syntax jflex    so ~/.vim/syntax/jflex.vim
 " CUP syntax highlight
 autocmd BufNewFile,BufRead *.cup setf cup
-
